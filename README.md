@@ -26,25 +26,40 @@ pip install .
 ## 🗂 Example Usage
 ```python
 import numpy as np
-from synker import Scott, KDE_2D, generate_synthetic_data, kl_divergence
+from synker.scott import Scott
+from synker.silverman import Silverman
+from synker.kde import KDE_2D
+from synker.kl_div import KL_div
+from synker.synthetic import Synthetic
 
-# Example real data (2D: X and Y)
-real_data = np.random.randn(100, 2)
 
-# Bandwidth estimation
-hx = Scott(real_data[:, 0])
-hy = Scott(real_data[:, 1])
+# Generate sample data
+np.random.seed(42)
+data = np.random.weibull(a=2, size=(100, 2))
 
-# Grid definition
-grid_x = np.linspace(real_data[:, 0].min(), real_data[:, 0].max(), 10)
-grid_y = np.linspace(real_data[:, 1].min(), real_data[:, 1].max(), 10)
+# Test Scott's bandwidth
+hx = Scott(data[:, 0])
+hy = Scott(data[:, 1])
+print(f"Scott's Bandwidth hx: {hx}, hy: {hy}")
 
-# Synthetic data generation
-synthetic_data = generate_synthetic_data(real_data, hx, hy, grid_x, grid_y)
+# Test Silverman's bandwidth
+hx_sil = Silverman(data[:, 0])
+hy_sil = Silverman(data[:, 1])
+print(f"Silverman's Bandwidth hx: {hx_sil}, hy: {hy_sil}")
 
-# KL Divergence calculation
-kl_value = kl_divergence(real_data, synthetic_data, hx, hy)
-print(f"KL Divergence: {kl_value}")
+# Test KDE
+grid_x = np.linspace(data[:, 0].min(), data[:, 0].max(), 100)
+grid_y = np.linspace(data[:, 1].min(), data[:, 1].max(), 100)
+density = KDE_2D(data[:, 0], data[:, 1], grid_x, grid_y, hx, hy)
+print(f"KDE Density Shape: {density.shape}")
+
+# Test Synthetic
+Synth_data = Synthetic(data, hx=hx, hy=hy, grid_x=grid_x, grid_y=grid_y, n_samples=100)
+print(f"Synthetic Data Shape: {Synth_data.shape}")
+
+# Test KL Divergence 
+kl = KL_div(data, Synth_data, hx, hy)
+print(f"KL Divergence (self): {kl}")
 ```
 
 ---
@@ -110,3 +125,4 @@ THE SOFTWARE.
 ---
 
 Let me know if you want to add badges (PyPI, version, license), future improvements, or more examples!"# synker" 
+"# 1" 
