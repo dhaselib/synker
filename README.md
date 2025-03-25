@@ -1,0 +1,112 @@
+# 📦 synker
+
+**synker** is a Python package designed for generating synthetic datasets based on real data using kernel density estimation (KDE) methods. It supports bandwidth selection (Scott's and Silverman's rules), 2D KDE, synthetic data generation, and KL divergence evaluation between real and synthetic datasets.
+
+---
+
+## 🚀 Features
+- **Bandwidth Estimation**: Scott's Rule and Silverman's Rule
+- **2D Kernel Density Estimation**
+- **Synthetic Data Generation** based on KDE
+- **KL Divergence Calculation** for model evaluation
+- Modular design for easy extension and usage
+
+---
+
+## 🧠 Installation
+Clone the repository and install the package locally:
+```bash
+git clone https://github.com/dhaselib/synker
+cd synker
+pip install .
+```
+
+---
+
+## 🗂 Example Usage
+```python
+import numpy as np
+from synker import Scott, KDE_2D, generate_synthetic_data, kl_divergence
+
+# Example real data (2D: X and Y)
+real_data = np.random.randn(100, 2)
+
+# Bandwidth estimation
+hx = Scott(real_data[:, 0])
+hy = Scott(real_data[:, 1])
+
+# Grid definition
+grid_x = np.linspace(real_data[:, 0].min(), real_data[:, 0].max(), 10)
+grid_y = np.linspace(real_data[:, 1].min(), real_data[:, 1].max(), 10)
+
+# Synthetic data generation
+synthetic_data = generate_synthetic_data(real_data, hx, hy, grid_x, grid_y)
+
+# KL Divergence calculation
+kl_value = kl_divergence(real_data, synthetic_data, hx, hy)
+print(f"KL Divergence: {kl_value}")
+```
+
+---
+
+## ✅ Testing
+We provide a `test_synker.py` file to test core functionalities like Scott's Rule, KDE, synthetic sampling, and KL divergence:
+
+### Run Tests:
+```bash
+python -m unittest test_synker.py
+```
+
+### Tests Include:
+- Scott and Silverman bandwidth estimation
+- 2D KDE output validation
+- Synthetic data shape and bounds
+- Non-negative KL divergence check
+
+---
+
+## 📁 Project Structure
+```
+synker/
+│
+├── __init__.py
+├── scott.py
+├── silverman.py
+├── kde.py
+├── sampling.py
+├── kl_divergence.py
+├── tests/
+│   └── test_synker.py
+└── README.md
+```
+
+---
+
+## 📜 License - MIT
+```
+MIT License
+
+Copyright (c) 2025 Danial Haselibozchaloee
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+```
+
+---
+
+Let me know if you want to add badges (PyPI, version, license), future improvements, or more examples!"# synker" 
