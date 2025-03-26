@@ -45,8 +45,9 @@ print("KL divergence: \n", KL_divergence)
 
 # Plot
 plt.figure(figsize = (8,8), dpi = 100)
-plt.scatter(X,Y)
-plt.scatter(Synth_X,Synth_Y)
+plt.scatter(X,Y, label = "Real Data", alpha = 0.5)
+plt.scatter(Synth_X,Synth_Y, label = "Synthetic Data", alpha = 0.5)
 plt.xlabel("X")
 plt.ylabel("Y")
+plt.legend(frameon = False, loc = 'lower left')
 plt.show()

@@ -6,4 +6,4 @@ from .kde import kde
 from .kl_div import KL_div
 from .synthetic import Synthetic
 
-__all__ = ["Scott", "Silverman", "KDE_2D", "KL_div", "Synthetic"]
+__all__ = ["Scott", "Silverman", "kde", "KL_div", "Synthetic"]
