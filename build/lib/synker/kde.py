@@ -1,33 +1,17 @@
 import numpy as np
 
-def KDE_2D(x, y, xi, yi, hx, hy):
+def kde(x, y, xi=None, yi=None, hx=None, hy=None, res=100):
     """
-    Kernel Density Estimation (KDE) for joint distribution of 2D data.
-
-    Args:
-        x: Array of x data points.
-        y: Array of y data points.
-        xi: Grid points for x-axis.
-        yi: Grid points for y-axis.
-        hx: Bandwidth for x (T).
-        hy: Bandwidth for y (Hs).
-
-    Returns:
-        2D density array for the joint distribution.
+    Kernel Density Estimation for 2D data
+    Auto-generates grid xi, yi if not provided
     """
-    x = np.asarray(x)
-    y = np.asarray(y)
-    xi = np.asarray(xi)
-    yi = np.asarray(yi)
-
-    if x.ndim != 1 or y.ndim != 1 or xi.ndim != 1 or yi.ndim != 1:
-        raise ValueError("Input arrays must be 1D.")
-    if len(x) != len(y):
-        raise ValueError("x and y must have the same length.")
-    if hx <= 0 or hy <= 0:
-        raise ValueError("Bandwidths hx and hy must be positive.")
-
     n = len(x)
+    # Auto-generate grid if not provided
+    if xi is None:
+        xi = np.linspace(min(x), max(x), res)
+    if yi is None:
+        yi = np.linspace(min(y), max(y), res)
+
     p = np.zeros((len(xi), len(yi)))
 
     for i in range(n):

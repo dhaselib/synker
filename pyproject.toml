@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "synker"
-version = "0.0.2"
+version = "0.0.3"
 description = "A Python package for generating synthetic data."
 authors = [
     {name = "Danial Haselibozchaloee", email = "dhaselib@gmail.com"}

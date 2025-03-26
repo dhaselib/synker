@@ -2,7 +2,7 @@
 
 from .scott import Scott
 from .silverman import Silverman
-from .kde import KDE_2D
+from .kde import kde
 from .kl_div import KL_div
 from .synthetic import Synthetic
 
