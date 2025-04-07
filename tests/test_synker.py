@@ -1,12 +1,12 @@
 import unittest
 import numpy as np
 import matplotlib.pyplot as plt
-from synker.scott import Scott
-from synker.silverman import Silverman
-from synker.kl_div import KL_div
-from synker.synthetic import Synthetic
-from synker.kde import kde
-from synker.pinkde import pinkde  # Import your pinkde function
+from synker import Scott
+from synker import Silverman
+from synker import KL_div
+from synker import Synthetic
+from synker import kde
+from synker import Pinkde  # Import your pinkde function
 import pandas as pd #import pandas
 
 class TestSynker(unittest.TestCase):
