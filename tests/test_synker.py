@@ -6,7 +6,11 @@ from synker import Silverman
 from synker import KL_div
 from synker import Synthetic
 from synker import kde
+<<<<<<< HEAD
 from synker import Pinkde  # Import your pinkde function
+=======
+from synker import pinkde  # Import your pinkde function
+>>>>>>> aaa68d2996bf1db90c1115edd48f0880438135e8
 import pandas as pd #import pandas
 
 class TestSynker(unittest.TestCase):
