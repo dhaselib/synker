@@ -100,7 +100,7 @@ class TestSynker(unittest.TestCase):
         res = 100
         min_val = 0.2
         max_val = 0.8
-        result = pinkde(self.X, self.Y, hx, hy, "Scott", grid_x, grid_y, res, min_val, max_val)
+        result = Pinkde(self.X, self.Y, hx, hy, "Scott", grid_x, grid_y, res, min_val, max_val)
         self.assertIsInstance(result, pd.DataFrame)
         self.assertTrue(all(col in result.columns for col in ['X', 'Y', 'index']))
         self.assertTrue(all((result['X'] >= min(self.X)) & (result['X'] <= max(self.X))))

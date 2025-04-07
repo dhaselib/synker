@@ -5,7 +5,7 @@ from synker.silverman import Silverman
 from synker.kl_div import KL_div
 from synker.synthetic import Synthetic
 from synker.kde import kde
-from synker.kde import Pinkde
+from synker.pinkde import Pinkde
 import pandas as pd  # Import pandas
 
 # Generate sample data
@@ -50,12 +50,11 @@ grid_y = np.linspace(min(Y), max(Y), 100)
 res = 100
 min_val = 0.2
 max_val = 0.5
-pinkde_result = pinkde(X, Y, hx, hy, "Scott", grid_x, grid_y, res, min_val, max_val)
+pinkde_result = Pinkde(X, Y, hx, hy, "Scott", grid_x, grid_y, res, min_val, max_val)
 print("pinkde result:")
 print(pinkde_result.head())  
 
 # Plot
-<<<<<<< HEAD
 plt.figure(figsize=(8, 8), dpi=100)
 plt.scatter(X, Y, label="Original Data")
 plt.scatter(Synth_X, Synth_Y, label="Synthetic Data")
@@ -76,12 +75,3 @@ plt.ylabel("Y")
 plt.legend()
 plt.title("Pinkde Result")
 plt.show()
-=======
-plt.figure(figsize = (8,8), dpi = 100)
-plt.scatter(X,Y, label = "Real Data", alpha = 0.5)
-plt.scatter(Synth_X,Synth_Y, label = "Synthetic Data", alpha = 0.5)
-plt.xlabel("X")
-plt.ylabel("Y")
-plt.legend(frameon = False, loc = 'lower left')
-plt.show()
->>>>>>> 1440d6da110fa0d20c9770d5caab8240bcd9f02e

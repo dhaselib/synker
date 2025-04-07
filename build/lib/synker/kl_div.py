@@ -17,4 +17,3 @@ def KL_div(real_data, synthetic_data, hx, hy, eps=1e-10):
     kl_divergence_value = np.sum(real_density * np.log(real_density / synthetic_density))
 
     return kl_divergence_value
-

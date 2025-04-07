@@ -1,50 +1,12 @@
 import numpy as np
 import pandas as pd
+from .kde import kde
+from .scott import Scott
+from .silverman import Silverman
 
 
-
-def pinkde(X, Y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val):
-    """
-    Computes the probability kernel density estimation (PKDE) for given data and selects the optimal bandwidth.
-
-    Parameters:
-    -----------
-    X : array-like
-        Input data for the first variable.
-    Y : array-like
-        Input data for the second variable.
-    hx : float or None
-        Bandwidth for the first variable. If None, it will be computed using the specified bandwidth method.
-    hy : float or None
-        Bandwidth for the second variable. If None, it will be computed using the specified bandwidth method.
-    bandwidth_method : str or None
-        Method for bandwidth selection. Choose from:
-        - "Scott" : Uses Scott’s rule to determine bandwidth.
-        - "Silverman" : Uses Silverman’s rule to determine bandwidth.
-        If None, the user must provide hx and hy.
-    grid_x : array-like or None
-        Grid points for the first variable. If None, it is generated using `np.linspace(min(X), max(X), res)`.
-    grid_y : array-like or None
-        Grid points for the second variable. If None, it is generated using `np.linspace(min(Y), max(Y), res)`.
-    res : int
-        Number of points in the grid along each axis.
-    min_val : float
-        Minimum threshold for normalized PKDE values when filtering data.
-    max_val : float
-        Maximum threshold for normalized PKDE values when filtering data.
-
-    Returns:
-    --------
-    pandas.DataFrame
-        A DataFrame containing:
-        - 'X': Filtered X values based on the specified PKDE range.
-        - 'Y': Corresponding Y values.
-        - 'index': Original indices of the filtered data points in the input dataset.
-
-    The function filters data points whose normalized PKDE values lie within the range [min_val, max_val].
-    """
-
-    # Bandwidth selection
+def Pinkde(X, Y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val):
+    
     if bandwidth_method is not None:
         if bandwidth_method.lower() == "scott":
             hx = Scott(X)
@@ -58,7 +20,7 @@ def pinkde(X, Y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val
         if hx is None or hy is None:
             raise ValueError("Provide hx and hy or set bandwidth_method.")
     
-    # Grid generation if not provided
+    
     if grid_x is None:
         grid_x = np.linspace(min(X), max(X), res)
     if grid_y is None:
