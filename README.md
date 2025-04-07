@@ -1,4 +1,4 @@
-```markdown
+markdown
 # 📦 synker
 
 **synker** is a Python package designed for generating synthetic datasets based on real data using kernel density estimation (KDE) methods. It supports bandwidth selection (Scott's and Silverman's rules), 2D KDE, synthetic data generation, Kullback–Leibler (KL) divergence evaluation between real and synthetic datasets, and arbitrary probability interval selection for data identification.
@@ -162,3 +162,4 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ```"# 1" 
+"# 1" 
