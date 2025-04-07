@@ -5,6 +5,7 @@ setup.py
 synker/__init__.py
 synker/kde.py
 synker/kl_div.py
+synker/pinkde.py
 synker/scott.py
 synker/silverman.py
 synker/synthetic.py

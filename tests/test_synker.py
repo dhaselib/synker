@@ -6,6 +6,8 @@ from synker.silverman import Silverman
 from synker.kl_div import KL_div
 from synker.synthetic import Synthetic
 from synker.kde import kde
+from synker.pinkde import pinkde  # Import your pinkde function
+import pandas as pd #import pandas
 
 class TestSynker(unittest.TestCase):
     
@@ -88,6 +90,22 @@ class TestSynker(unittest.TestCase):
         plt.title("Real vs Synthetic Data")
         plt.close()  # Prevent actual plot during test
         print("Plotting test completed.")
+
+    def test_pinkde(self):
+        # Test pinkde function
+        hx = Scott(self.X)
+        hy = Scott(self.Y)
+        grid_x = np.linspace(min(self.X), max(self.X), 100)
+        grid_y = np.linspace(min(self.Y), max(self.Y), 100)
+        res = 100
+        min_val = 0.2
+        max_val = 0.8
+        result = pinkde(self.X, self.Y, hx, hy, "Scott", grid_x, grid_y, res, min_val, max_val)
+        self.assertIsInstance(result, pd.DataFrame)
+        self.assertTrue(all(col in result.columns for col in ['X', 'Y', 'index']))
+        self.assertTrue(all((result['X'] >= min(self.X)) & (result['X'] <= max(self.X))))
+        self.assertTrue(all((result['Y'] >= min(self.Y)) & (result['Y'] <= max(self.Y))))
+        print("pinkde test completed.")
 
 if __name__ == "__main__":
     unittest.main()

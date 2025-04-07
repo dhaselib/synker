@@ -1,3 +1,4 @@
+toml_content = """\
 [build-system]
 requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
@@ -21,3 +22,9 @@ dev = ["pytest"]
 
 [tool.setuptools]
 packages = ["synker"]
+"""
+
+with open("pyproject.toml", "w") as file:
+    file.write(toml_content)
+
+print("pyproject.toml file has been created successfully!")
