@@ -55,6 +55,7 @@ print("pinkde result:")
 print(pinkde_result.head())  
 
 # Plot
+<<<<<<< HEAD
 plt.figure(figsize=(8, 8), dpi=100)
 plt.scatter(X, Y, label="Original Data")
 plt.scatter(Synth_X, Synth_Y, label="Synthetic Data")
@@ -75,3 +76,12 @@ plt.ylabel("Y")
 plt.legend()
 plt.title("Pinkde Result")
 plt.show()
+=======
+plt.figure(figsize = (8,8), dpi = 100)
+plt.scatter(X,Y, label = "Real Data", alpha = 0.5)
+plt.scatter(Synth_X,Synth_Y, label = "Synthetic Data", alpha = 0.5)
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.legend(frameon = False, loc = 'lower left')
+plt.show()
+>>>>>>> 1440d6da110fa0d20c9770d5caab8240bcd9f02e
