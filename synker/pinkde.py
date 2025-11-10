@@ -5,15 +5,15 @@ from .scott import Scott
 from .silverman import Silverman
 
 
-def Pinkde(X, Y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val):
+def Pinkde(x, y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val):
     
     if bandwidth_method is not None:
         if bandwidth_method.lower() == "scott":
-            hx = Scott(X)
-            hy = Scott(Y)
+            hx = Scott(x)
+            hy = Scott(y)
         elif bandwidth_method.lower() == "silverman":
-            hx = Silverman(X)
-            hy = Silverman(Y)
+            hx = Silverman(x)
+            hy = Silverman(y)
         else:
             raise ValueError("Invalid bandwidth_method. Choose 'Scott' or 'Silverman'.")
     else:
@@ -22,13 +22,13 @@ def Pinkde(X, Y, hx, hy, bandwidth_method, grid_x, grid_y, res, min_val, max_val
     
     
     if grid_x is None:
-        grid_x = np.linspace(min(X), max(X), res)
+        grid_x = np.linspace(min(x), max(x), res)
     if grid_y is None:
-        grid_y = np.linspace(min(Y), max(Y), res)
+        grid_y = np.linspace(min(y), max(y), res)
 
-    pkde = kde(X, Y, X, Y, hx, hy)
+    pkde = kde(x, y, x, y, hx, hy)
     
-    df = pd.DataFrame({'X': X, 'Y': Y, 'pkde': np.diag(pkde), 'index': np.arange(len(X))})
+    df = pd.DataFrame({'X': x, 'Y': y, 'pkde': np.diag(pkde), 'index': np.arange(len(x))})
     sorted_df = df.sort_values(by='pkde').reset_index(drop=True)
     sorted_df['normalized_pkde'] = (sorted_df['pkde'] - sorted_df['pkde'].min()) / (sorted_df['pkde'].max() - sorted_df['pkde'].min())
 

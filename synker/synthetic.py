@@ -3,8 +3,8 @@ from synker.kde import kde
 from synker.scott import Scott
 from synker.silverman import Silverman
 
-def Synthetic(X, Y, hx=None, hy=None, res=100, bandwidth_method=None, grid_x=None, grid_y=None):
-    
+def Synthetic(X, Y, hx=None, hy=None, res=100, bandwidth_method=None, grid_x=None, grid_y=None, n_samples=None):
+
     if bandwidth_method is not None:
         if bandwidth_method.lower() == "scott":
             hx = Scott(X)
@@ -18,20 +18,19 @@ def Synthetic(X, Y, hx=None, hy=None, res=100, bandwidth_method=None, grid_x=Non
         if hx is None or hy is None:
             raise ValueError("Provide hx and hy or set bandwidth_method.")
     
-    
     if grid_x is None:
         grid_x = np.linspace(min(X), max(X), res)
     if grid_y is None:
         grid_y = np.linspace(min(Y), max(Y), res)
 
-    
     pkde = kde(X, Y, grid_x, grid_y, hx, hy)
     pkde /= pkde.sum()
 
-    
-    num_samples = len(X)
-    samples = np.zeros((num_samples, 2))
-    for i in range(num_samples):
+    if n_samples is None:
+        n_samples = len(X)
+
+    samples = np.zeros((n_samples, 2))
+    for i in range(n_samples):
         xi_idx = np.random.choice(range(len(grid_x)), p=pkde.sum(axis=1))
         yi_idx = np.random.choice(range(len(grid_y)), p=pkde[xi_idx] / pkde[xi_idx].sum())
         samples[i, 0] = grid_x[xi_idx]

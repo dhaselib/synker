@@ -3,6 +3,7 @@ README.md
 pyproject.toml
 setup.py
 synker/__init__.py
+synker/ckl_div.py
 synker/kde.py
 synker/kl_div.py
 synker/pinkde.py
@@ -14,4 +15,3 @@ synker.egg-info/SOURCES.txt
 synker.egg-info/dependency_links.txt
 synker.egg-info/requires.txt
 synker.egg-info/top_level.txt
-tests/test_synker.py
