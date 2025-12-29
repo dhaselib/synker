@@ -1,7 +1,7 @@
 Metadata-Version: 2.4
 Name: synker
-Version: 0.0.6
-Summary: A Python package for generating synthetic data.
+Version: 0.0.1
+Summary: A Python package for fracture growth modeling.
 Author-email: Danial Haselibozchaloee <dhaselib@gmail.com>
 License: MIT License
         
@@ -25,11 +25,11 @@ License: MIT License
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
         THE SOFTWARE.
         
-Requires-Python: >=3.8
+Requires-Python: >=3.7
 Description-Content-Type: text/markdown
 License-File: LICENSE.txt
 Requires-Dist: numpy
-Requires-Dist: pandas
+Requires-Dist: scipy
 Provides-Extra: dev
 Requires-Dist: pytest; extra == "dev"
 Dynamic: license-file
